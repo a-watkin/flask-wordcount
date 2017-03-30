@@ -1,0 +1,34 @@
+postgresql notes.txt
+
+start postgresql console:
+psql
+
+
+Once logged in, you can get check your current connection information by typing:
+\conninfo
+
+
+
+Create table:
+
+CREATE TABLE playground (
+    equip_id serial PRIMARY KEY,
+    type varchar (50) NOT NULL,
+    color varchar (25) NOT NULL,
+    location varchar(25) check (location in ('north', 'south', 'west', 'east', 'northeast', 'southeast', 'southwest', 'northwest')),
+    install_date date
+);
+
+
+We can see our new table by typing:
+\d
+
+
+connect to a database:
+\c database_name
+
+see the database tables:
+\dt 
+
+see table contents?
+\d results

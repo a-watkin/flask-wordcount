@@ -1,0 +1,7 @@
+Please edit configuration/connection/logging settings in '/home/a/flask-by-
+  example/migrations/alembic.ini' before proceeding.
+
+RIGHT BACK TO THIS:
+
+conn = _connect(dsn, connection_factory=connection_factory, async=async)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) fe_sendauth: no password supplied
