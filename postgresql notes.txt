@@ -1,14 +1,12 @@
 postgresql notes.txt
 
+------------------------------------------------------------------------------------------------
 start postgresql console:
 psql
-
-
+------------------------------------------------------------------------------------------------
 Once logged in, you can get check your current connection information by typing:
 \conninfo
-
-
-
+------------------------------------------------------------------------------------------------
 Create table:
 
 CREATE TABLE playground (
@@ -19,16 +17,95 @@ CREATE TABLE playground (
     install_date date
 );
 
-
+------------------------------------------------------------------------------------------------
 We can see our new table by typing:
 \d
 
-
+------------------------------------------------------------------------------------------------
 connect to a database:
 \c database_name
-
+------------------------------------------------------------------------------------------------
 see the database tables:
 \dt 
-
+------------------------------------------------------------------------------------------------
 see table contents?
 \d results
+
+------------------------------------------------------------------------------------------------
+WHAT GOT POSTGRES WORKING:
+export DATABASE_URL="postgresql://localhost/wordcount_dev"
+export DATABASE_URL="postgres://sid:sid12345@localhost:5432/wordcount_dev"
+
+
+START THE FUCKING SERVER:
+sudo service postgresql restart
+
+------------------------------------------------------------------------------------------------
+see database users (from psql):
+\du
+
+
+
+
+------------------------------------------------------------------------------------------------
+SO I WAS GETTING TOO MANY ERRORS I DECIDED TO SLASH AND BURN THIS BITCH
+
+#   File "/usr/local/lib/python3.5/os.py", line 725, in __getitem__
+#     raise KeyError(key) from None
+# KeyError: 'postgres://sid:s12345@localhost:5432/wordcount_dev'
+# (env) a@a-VirtualBox:~/flask-by-example$ python fuck.py
+# base dir is /home/a/flask-by-example
+# os environ is postgres://sid:12345@localhost:5432/wordcount_dev
+# Traceback (most recent call last):
+#   File "fuck.py", line 6, in <module>
+#     print('os environ is', os.environ['postgres://sid:12345@localhost:5432/wordcount_dev'])
+#   File "/usr/local/lib/python3.5/os.py", line 725, in __getitem__
+#     raise KeyError(key) from None
+# KeyError: 'postgres://sid:12345@localhost:5432/wordcount_dev'
+# (env) a@a-VirtualBox:~/flask-by-example$ 
+
+
+9.3
+
+9.4
+
+9.4
+
+
+check which postgres versions are installed:
+dpkg -l | grep postgres
+
+Remove them:
+sudo apt-get --purge remove postgresql-9.6
+
+Removing obsolete dictionary files:
+root@a-VirtualBox:~# dpkg -l | grep postgres
+ii  pgdg-keyring                                          2017.1                                              all          keyring for apt.postgresql.org
+ii  postgresql-client-9.3                                 9.3.16-0ubuntu0.14.04                               i386         front-end programs for PostgreSQL 9.3
+ii  postgresql-client-9.4                                 9.4.11-1.pgdg14.04+1                                i386         front-end programs for PostgreSQL 9.4
+ii  postgresql-client-9.6                                 9.6.2-1.pgdg14.04+1                                 i386         front-end programs for PostgreSQL 9.6
+ii  postgresql-client-common                              180.pgdg14.04+1                                     all          manager for multiple PostgreSQL client versions
+ii  postgresql-common                                     180.pgdg14.04+1                                     all          PostgreSQL database-cluster manager
+root@a-VirtualBox:~# 
+
+
+REMOVE USER:
+
+SEE ALL LOCAL USERS:
+cut -d: -f1 /etc/passwd
+
+DELETE USER:
+sudo userdel username
+
+
+------------------------------------------------------------------------------------------------
+REINSTALLING AND FOLLOWING THE TUTORIALSPOINT INFO ON IT
+
+https://www.tutorialspoint.com/postgresql/postgresql_environment.htm
+
+MAKING MY PASSWORD (THIS DID JACK AND FUCKING SHIT): a
+trying again, password: fuck
+port: 5432
+
+
+previous installation has been found at /opt/postgreSQL/9.4

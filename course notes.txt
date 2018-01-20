@@ -1,0 +1,6 @@
+course notes:
+
+python manage.py runserver
+
+Git for this project pushes to heroku I think...
+pro and staging
